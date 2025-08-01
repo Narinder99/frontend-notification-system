@@ -1,36 +1,61 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Notification System Frontend
 
-## Getting Started
+A Next.js frontend for the notification system with real-time SSE support.
 
-First, run the development server:
+## Setup
 
+1. Install dependencies:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Start the development server:
+```bash
+npm run dev
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Features
 
-## Learn More
+### Components
 
-To learn more about Next.js, take a look at the following resources:
+- **SSE Client**: Maintains persistent connection to backend for real-time notifications
+- **Notification UI**: Displays notification list and handles real-time notifications
+- **Activity Triggers**: Components that generate notifications (post, like, comment, follow buttons)
+- **User Management**: Create and manage users, set online/offline status
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Real-time Features
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- Server-Sent Events (SSE) connection for live notifications
+- Automatic reconnection on connection loss
+- Real-time notification updates
+- User online/offline status management
 
-## Deploy on Vercel
+### Testing
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1. Create users using the User Management panel
+2. Set users to "Online" status
+3. Select a user to become the current user
+4. Use Activity Triggers to create notifications
+5. Watch real-time notifications appear
+6. Test with users having different follower counts
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## Architecture
+
+The frontend implements the specified notification system flow:
+
+- **Direct Fan-out**: For users with ≤10K followers
+- **Event-based Processing**: For users with >10K followers
+- **Online-only Delivery**: Only online users receive real-time notifications
+- **Hybrid Storage**: Combines direct notifications and event-based notifications
+
+## Technologies Used
+
+- Next.js 15
+- React 19
+- TypeScript
+- Tailwind CSS
+- Axios for API calls
+- React Hot Toast for notifications
+- Lucide React for icons
