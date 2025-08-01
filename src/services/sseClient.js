@@ -20,7 +20,7 @@ class SSEClient {
     this.onErrorCallback = onError;
 
     try {
-      this.eventSource = new EventSource(`http://13.203.207.159:3033/api/sse/${userId}`);
+      this.eventSource = new EventSource(`http://ec2-13-203-207-159.ap-south-1.compute.amazonaws.com:3033/api/sse/${userId}`);
       
       this.eventSource.onopen = () => {
         console.log('SSE connection established');
