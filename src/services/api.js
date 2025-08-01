@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_BASE_URL = 'http://localhost:3001/api';
+const API_BASE_URL = 'https://backend-notification-system-1.onrender.com/api';
 
 // Create axios instance
 const api = axios.create({
@@ -84,9 +84,10 @@ class ApiService {
 
   // Health check
   async healthCheck() {
-    const response = await axios.get('http://localhost:3001/health');
+    const response = await axios.get('https://backend-notification-system-1.onrender.com/health');
     return response.data;
   }
 }
 
-export default new ApiService(); 
+const apiService = new ApiService();
+export default apiService; 

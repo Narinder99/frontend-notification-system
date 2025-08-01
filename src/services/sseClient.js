@@ -20,7 +20,7 @@ class SSEClient {
     this.onErrorCallback = onError;
 
     try {
-      this.eventSource = new EventSource(`http://localhost:3001/api/sse/${userId}`);
+      this.eventSource = new EventSource(`https://backend-notification-system-1.onrender.com/api/sse/${userId}`);
       
       this.eventSource.onopen = () => {
         console.log('SSE connection established');
@@ -87,4 +87,5 @@ class SSEClient {
   }
 }
 
-export default new SSEClient(); 
+const sseClient = new SSEClient();
+export default sseClient; 

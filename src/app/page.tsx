@@ -19,13 +19,13 @@ export default function Home() {
       // Connect to SSE
       sseClient.connect(
         currentUserId,
-        (data: any) => {
+        (data: { type: string; message?: string }) => {
           // Handle incoming notifications
           if (data.type === 'notification') {
             toast.success('New notification received!');
           }
         },
-        (error: any) => {
+        (error: Error) => {
           console.error('SSE Error:', error);
           setSseConnected(false);
         }
@@ -139,7 +139,7 @@ export default function Home() {
               <h4 className="font-medium mb-2">1. Setup</h4>
               <ul className="space-y-1 list-disc list-inside">
                 <li>Create a few users using the User Management panel</li>
-                <li>Set users to "Online" status</li>
+                <li>Set users to &quot;Online&quot; status</li>
                 <li>Select a user to become the current user</li>
               </ul>
             </div>
